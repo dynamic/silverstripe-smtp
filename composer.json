@@ -1,5 +1,8 @@
 {
-  "name": "mediadevils/silverstripe-smtp",
-  "require": {
-  }
+    "name": "mediadevils/silverstripe-smtp",
+    "description": "Custom SMTP mailer for SilverStripe",
+    "type": "silverstripe-module",
+    "require": {
+        "silverstripe/framework": "3.*"
+    }
 }
