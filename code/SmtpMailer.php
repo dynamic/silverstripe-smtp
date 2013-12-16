@@ -82,16 +82,16 @@ class SmtpMailer extends Mailer {
 
 		} catch(phpmailerException $pe){
 			$this->handleError($pe->errorMessage(), $msgForLog);
+			throw $pe;
 		} catch(Exception $e){
 			$this->handleError($e->getMessage(), $msgForLog);
+			throw $e;
 		}
 	}
 
 
 	function handleError($msg, $msgForLog){
-		echo $msg;
 		Debug::log($msg . $msgForLog);
-		die();
 	}
 
 
