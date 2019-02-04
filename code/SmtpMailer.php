@@ -105,11 +105,13 @@ class SmtpMailer extends Mailer {
 			$this->mailer->ClearAddresses();
 			$this->mailer->AddAddress($to_splitted[3], $to_splitted[2]);
 		} else {
-			$to = Email::validEmailAddress($to);
-			$this->mailer->ClearAddresses();
-			$this->mailer->AddAddress($to, ucfirst(substr($to, 0, strpos($to, '@'))));
-			//For the recipient's name, the string before the @ from the e-mail address is used
-			$this->mailer->SetFrom($from);
+			//$to = Email::validEmailAddress($to);
+			if (Email::is_valid_address($to)) {
+                $this->mailer->ClearAddresses();
+                $this->mailer->AddAddress($to, ucfirst(substr($to, 0, strpos($to, '@'))));
+                //For the recipient's name, the string before the @ from the e-mail address is used
+                $this->mailer->SetFrom($from);
+            }
 		}
 		$this->mailer->Subject = $subject;
 	}
